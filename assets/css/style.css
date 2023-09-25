@@ -474,7 +474,8 @@ section {
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #050d18;
+  color: #149ddd;
+  border-bottom: solid 1px;
 }
 
 .resume .resume-item {
