@@ -75,7 +75,6 @@ h6 {
   left: 0;
   bottom: 0;
   width: 300px;
-  transition: all ease-in-out 0.5s;
   z-index: 9997;
   transition: all 0.5s;
   padding: 0 15px;
@@ -83,11 +82,61 @@ h6 {
   overflow-y: auto;
 }
 
-#header .profile img {
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+.magic-card {
   margin: 15px auto;
-  display: block;
   width: 120px;
-  border: 8px solid #2c2f3f;
+  background: #191c29;
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.magic-card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: magic-spin 2.5s linear infinite;
+}
+
+.magic-card::after {
+  position: absolute;
+  content: "";
+  z-index: -2;
+  height: 120%;
+  width: 120%;
+  filter: blur(15px);
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  animation: magic-spin 2.5s linear infinite;
+}
+
+@keyframes magic-spin {
+  0% {
+    --rotate: 0deg;
+  }
+
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+#header .profile img {
+  display: block;
 }
 
 #header .profile h1 {
