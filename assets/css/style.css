@@ -102,12 +102,12 @@ h6 {
 .magic-card::before {
   content: "";
   width: 104%;
-  height: 102%;
+  height: 104%;
   border-radius: 8px;
   background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   position: absolute;
   z-index: -1;
-  top: -1%;
+  top: -2%;
   left: -2%;
   animation: magic-spin 2.5s linear infinite;
 }
