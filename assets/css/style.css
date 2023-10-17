@@ -123,10 +123,6 @@ h6 {
   animation: magic-spin 2.5s linear infinite;
 }
 
-.macgic-card img {
-  border-radius: 6px;
-}
-
 @keyframes magic-spin {
   0% {
     --rotate: 0deg;
@@ -139,6 +135,7 @@ h6 {
 
 #header .profile img {
   display: block;
+  border-radius: 6px;
 }
 
 #header .profile h1 {
