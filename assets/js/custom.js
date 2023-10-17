@@ -8,7 +8,6 @@ $(document).ready(function () {
     $(".data-birthYear").text(BIRTH_YEAR);
     $(".data-age").text(currentYear - BIRTH_YEAR);
     $("#data-experienceYears").attr("data-purecounter-end", currentYear - START_WORKING_YEAR);
-    $(".data-currentYear").text(currentYear);
     $("#date-remainDays").attr("data-purecounter-end", dateDiffInDays(new Date(), new Date(END_DATE)));
 
     // Initiate Pure Counter js
