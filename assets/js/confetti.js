@@ -1,13 +1,14 @@
 (function () {
   let COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
 
-  NUM_CONFETTI = 400;
+  canvas = document.getElementById("world");
+
+  NUM_CONFETTI = Math.round(400 * 1853 * 1080 / screen.availHeight / screen.availWidth);
 
   COLORS = [[246, 246, 189], [238, 84, 135], [238, 88, 113], [136, 210, 242], [242, 255, 41]]
 
   PI_2 = 2 * Math.PI;
 
-  canvas = document.getElementById("world");
 
   context = canvas.getContext("2d");
 
