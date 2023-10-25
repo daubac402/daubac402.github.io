@@ -3,7 +3,8 @@
 
   canvas = document.getElementById("world");
 
-  NUM_CONFETTI = Math.round(400 * 1853 * 1080 / screen.availHeight / screen.availWidth);
+  NUM_CONFETTI = Math.round(400 * screen.availHeight * screen.availWidth / 1853 / 1080);
+  console.log(NUM_CONFETTI);
 
   COLORS = [[246, 246, 189], [238, 84, 135], [238, 88, 113], [136, 210, 242], [242, 255, 41]]
 
