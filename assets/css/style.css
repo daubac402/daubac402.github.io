@@ -116,9 +116,9 @@ h6 {
   position: absolute;
   content: "";
   z-index: -2;
-  height: 120%;
-  width: 120%;
-  filter: blur(15px);
+  height: 105%;
+  width: 105%;
+  filter: blur(10px);
   background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   animation: magic-spin 2.5s linear infinite;
 }
