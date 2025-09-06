@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on The Anh Nguyen&#39;s Blog</title>
+    <link>http://localhost:1313/blogs/tags/</link>
+    <description>Recent content in Tags on The Anh Nguyen&#39;s Blog</description>
+    <generator>Hugo -- 0.149.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Sep 2025 08:16:20 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/blogs/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Giấy Tờ</title>
+      <link>http://localhost:1313/blogs/tags/gi%E1%BA%A5y-t%E1%BB%9D/</link>
+      <pubDate>Sat, 06 Sep 2025 08:16:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/gi%E1%BA%A5y-t%E1%BB%9D/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hướng Dẫn</title>
+      <link>http://localhost:1313/blogs/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</link>
+      <pubDate>Sat, 06 Sep 2025 08:16:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nhật Bản</title>
+      <link>http://localhost:1313/blogs/tags/nh%E1%BA%ADt-b%E1%BA%A3n/</link>
+      <pubDate>Sat, 06 Sep 2025 08:16:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/nh%E1%BA%ADt-b%E1%BA%A3n/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vĩnh Trú</title>
+      <link>http://localhost:1313/blogs/tags/v%C4%A9nh-tr%C3%BA/</link>
+      <pubDate>Sat, 06 Sep 2025 08:16:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/v%C4%A9nh-tr%C3%BA/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>永住権</title>
+      <link>http://localhost:1313/blogs/tags/%E6%B0%B8%E4%BD%8F%E6%A8%A9/</link>
+      <pubDate>Sat, 06 Sep 2025 08:16:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/%E6%B0%B8%E4%BD%8F%E6%A8%A9/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hugo</title>
+      <link>http://localhost:1313/blogs/tags/hugo/</link>
+      <pubDate>Sat, 06 Sep 2025 00:24:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/hugo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Papermod</title>
+      <link>http://localhost:1313/blogs/tags/papermod/</link>
+      <pubDate>Sat, 06 Sep 2025 00:24:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/papermod/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Second-Post</title>
+      <link>http://localhost:1313/blogs/tags/second-post/</link>
+      <pubDate>Sat, 06 Sep 2025 00:24:20 +0900</pubDate>
+      <guid>http://localhost:1313/blogs/tags/second-post/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

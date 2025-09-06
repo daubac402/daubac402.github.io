@@ -1,0 +1,22 @@
+baseURL = "https://daubac402.github.io/blogs"
+languageCode = "en-us"
+title = "The Anh Nguyen's Blog"
+theme = "PaperMod"
+
+pagination.pagerSize = 10
+publishDir = "../blogs/"
+
+[params]
+    defaultTheme = "auto" # options: dark, light, auto
+    showReadingTime = true
+    showShareButtons = true
+    showPostNavLinks = true
+    showBreadCrumbs = true
+    showCodeCopyButtons = true
+
+[markup]
+    [markup.tableOfContents]
+        endLevel = 3
+        ordered = false
+        startLevel = 2
+
