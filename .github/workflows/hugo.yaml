@@ -79,10 +79,10 @@ jobs:
             hugo-
       - name: Build the site
         run: |
-          hugo \
+          cd hugo-blogs && hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --baseURL "${{ steps.pages.outputs.base_url }}/blogs" \
             --cacheDir "${{ runner.temp }}/hugo_cache"
       - name: Cache save
         id: cache-save
