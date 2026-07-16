@@ -84,6 +84,17 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/blogs" \
             --cacheDir "${{ runner.temp }}/hugo_cache"
+
+          cd "${GITHUB_WORKSPACE}"
+          mkdir -p public
+          rsync -a \
+            --exclude 'public' \
+            --exclude 'blogs' \
+            --exclude 'hugo-blogs' \
+            --exclude '.git' \
+            --exclude '.github' \
+            ./ public/
+          rsync -a blogs/ public/blogs/
       - name: Cache save
         id: cache-save
         uses: actions/cache/save@v4
