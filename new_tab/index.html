@@ -1,1 +1,41 @@
-<style>body,html{margin:0;padding:0;width:100vw;height:100vh;overflow:hidden;}video{width:100vw;height:100vh;object-fit:cover;display:block}</style><video autoplay loop muted playsinline src=x8_noSound_zip.mp4></video>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Video</title>
+  <style>
+    /* Reset & Prevent Scrolling */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      /* Use dvh (Dynamic Viewport Height) to prevent issues with mobile browser bars */
+      height: 100dvh; 
+      overflow: hidden;
+      background-color: #000; /* Fallback black background while video loads */
+    }
+    
+    /* Fullscreen Video */
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Optimized Video Tag -->
+  <video 
+    autoplay 
+    loop 
+    muted 
+    playsinline 
+    preload="auto"
+    src="x8_noSound_zip.mp4">
+  </video>
+
+</body>
+</html>
