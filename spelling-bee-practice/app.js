@@ -253,6 +253,11 @@ function repeatCurrentWord(onEnd) {
   speakPrompt({ wordOnly: true, onEnd });
 }
 
+function hearWordAgain() {
+  if (!state.currentWord) return;
+  repeatCurrentWord();
+}
+
 function primeAudio() {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
@@ -300,6 +305,19 @@ function clearAnswer() {
   renderSlots();
 }
 
+function removeLastLetter() {
+  if (state.locked) return;
+  if (state.chosenLetters.length === 0) return;
+  state.chosenLetters.pop();
+  dom.feedback.textContent = "";
+  dom.feedback.className = "feedback";
+  renderSlots();
+}
+
+function isGameActive() {
+  return dom.startScreen.classList.contains("hidden");
+}
+
 function addLetter(letter) {
   if (state.locked) return;
   if (state.chosenLetters.length >= CONFIG.wordLength) return;
@@ -312,6 +330,41 @@ function onKeyPress(event) {
   if (!key || state.locked) return;
   event.preventDefault();
   addLetter(key.dataset.letter);
+}
+
+function onPhysicalKeyDown(event) {
+  if (!isGameActive()) return;
+
+  const { key } = event;
+
+  if (key === "Enter") {
+    event.preventDefault();
+    if (!dom.answerOkBtn.hidden) {
+      dom.answerOkBtn.click();
+    } else {
+      checkAnswer();
+    }
+    return;
+  }
+
+  if (key === " " || event.code === "Space") {
+    event.preventDefault();
+    hearWordAgain();
+    return;
+  }
+
+  if (key === "Escape" || key === "Backspace") {
+    event.preventDefault();
+    removeLastLetter();
+    return;
+  }
+
+  if (state.locked) return;
+
+  if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
+    event.preventDefault();
+    addLetter(key.toUpperCase());
+  }
 }
 
 function buildKeyboard() {
@@ -379,18 +432,16 @@ async function beginGame() {
 
 dom.checkBtn.addEventListener("click", checkAnswer);
 dom.clearBtn.addEventListener("click", () => {
-  if (state.locked) return;
-  clearAnswer();
+  removeLastLetter();
 });
-dom.hearAgain.addEventListener("click", () => {
-  if (!state.currentWord) return;
-  repeatCurrentWord();
-});
+dom.hearAgain.addEventListener("click", hearWordAgain);
 dom.startBtn.addEventListener("click", beginGame);
 dom.answerOkBtn.addEventListener("click", () => {
   hideAnswerOk();
   startNewProblem();
 });
+
+document.addEventListener("keydown", onPhysicalKeyDown);
 
 buildKeyboard();
 renderSlots();
