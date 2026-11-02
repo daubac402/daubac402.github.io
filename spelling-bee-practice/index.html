@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Spelling Bee Practice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="start-screen" id="startScreen">
+      <div class="start-card">
+        <h2 class="start-title">Spelling Bee</h2>
+        <p class="start-hint">Tap Start to play. Turn sound on. Internet helps clear word audio.</p>
+        <button type="button" class="btn-start" id="startBtn">Start</button>
+      </div>
+    </div>
+
+    <main class="app">
+      <header class="header">
+        <h1 class="title">Spelling Bee</h1>
+        <p class="score" id="score" aria-live="polite"></p>
+      </header>
+
+      <section class="prompt" aria-live="polite">
+        <p class="prompt-text" id="promptText">Get ready…</p>
+        <button type="button" class="btn-hear" id="hearAgain" aria-label="Hear the word only">
+          🔊 Hear word again
+        </button>
+      </section>
+
+      <section class="answer" aria-label="Your spelling">
+        <div class="slots" id="letterSlots"></div>
+      </section>
+
+      <p class="feedback" id="feedback" aria-live="assertive"></p>
+      <button type="button" class="btn-ok" id="answerOkBtn" hidden>OK</button>
+
+      <section class="keyboard" id="keyboard" aria-label="Letter keyboard"></section>
+
+      <div class="actions">
+        <button type="button" class="btn-secondary" id="clearBtn">Clear</button>
+        <button type="button" class="btn-primary" id="checkBtn">Check</button>
+      </div>
+    </main>
+    <script src="pronunciation.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
