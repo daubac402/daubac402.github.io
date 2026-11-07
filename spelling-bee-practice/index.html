@@ -11,7 +11,7 @@
     <div class="start-screen" id="startScreen">
       <div class="start-card">
         <h2 class="start-title">Spelling Bee</h2>
-        <p class="start-hint">Tap Start to play. Turn sound on. Internet helps clear word audio.</p>
+        <p class="start-hint">Tap Start to play. Turn sound on. Internet helps clear word audio and pictures.</p>
         <button type="button" class="btn-start" id="startBtn">Start</button>
       </div>
     </div>
@@ -34,6 +34,18 @@
       </section>
 
       <p class="feedback" id="feedback" aria-live="assertive"></p>
+
+      <figure class="answer-card" id="answerCard" hidden>
+        <div class="answer-media" id="answerMedia">
+          <span class="answer-emoji" id="answerEmoji" aria-hidden="true"></span>
+          <img class="answer-image" id="answerImage" alt="" hidden />
+        </div>
+        <figcaption class="answer-caption">
+          <span class="answer-word" id="answerWord"></span>
+          <a class="answer-credit" id="answerCredit" href="#" target="_blank" rel="noopener" hidden></a>
+        </figcaption>
+      </figure>
+
       <button type="button" class="btn-ok" id="answerOkBtn" hidden>OK</button>
 
       <section class="keyboard" id="keyboard" aria-label="Letter keyboard"></section>
@@ -44,6 +56,7 @@
       </div>
     </main>
     <script src="pronunciation.js"></script>
+    <script src="word-images.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

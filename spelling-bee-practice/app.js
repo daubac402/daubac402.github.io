@@ -36,7 +36,7 @@ const MALE_VOICE_NAME_PATTERNS = [
 
 const CONFIG = {
   wordLength: WORD_LENGTH,
-  nextProblemDelayMs: 2200,
+  nextProblemDelayMs: 2800,
   speechRate: 0.76,
   speechWordRate: 0.72,
   speechPitch: 1,
@@ -67,6 +67,7 @@ const state = {
   lastWord: "",
   speakToken: 0,
   preferredVoice: null,
+  revealedWord: "",
 };
 
 const dom = {
@@ -82,6 +83,12 @@ const dom = {
   startScreen: document.getElementById("startScreen"),
   startBtn: document.getElementById("startBtn"),
   answerOkBtn: document.getElementById("answerOkBtn"),
+  answerCard: document.getElementById("answerCard"),
+  answerMedia: document.getElementById("answerMedia"),
+  answerImage: document.getElementById("answerImage"),
+  answerEmoji: document.getElementById("answerEmoji"),
+  answerWord: document.getElementById("answerWord"),
+  answerCredit: document.getElementById("answerCredit"),
 };
 
 function pickRandomWord() {
@@ -297,11 +304,112 @@ function showAnswerOk() {
   dom.answerOkBtn.hidden = false;
 }
 
+function hideAnswerCard() {
+  state.revealedWord = "";
+  dom.answerCard.hidden = true;
+  dom.answerMedia.hidden = false;
+  dom.answerImage.hidden = true;
+  dom.answerImage.removeAttribute("src");
+  dom.answerImage.alt = "";
+  dom.answerEmoji.textContent = "";
+  dom.answerEmoji.hidden = false;
+  dom.answerCredit.hidden = true;
+  dom.answerCredit.removeAttribute("href");
+  dom.answerCredit.textContent = "";
+}
+
+function showAnswerSearchLink(word) {
+  if (state.revealedWord !== word) return;
+  dom.answerCredit.href = `https://www.google.com/search?tbm=isch&safe=active&q=${encodeURIComponent(
+    `${word} for kids`
+  )}`;
+  dom.answerCredit.textContent = "See pictures";
+  dom.answerCredit.hidden = false;
+}
+
+function applyAnswerPhoto(word, info) {
+  if (state.revealedWord !== word) return;
+
+  const image = dom.answerImage;
+  image.alt = word;
+  image.onload = () => {
+    if (state.revealedWord !== word) return;
+    dom.answerMedia.hidden = false;
+    image.hidden = false;
+    dom.answerEmoji.hidden = true;
+  };
+  image.onerror = () => {
+    if (state.revealedWord !== word) return;
+    image.hidden = true;
+    dom.answerMedia.hidden = !dom.answerEmoji.textContent;
+    dom.answerEmoji.hidden = !dom.answerEmoji.textContent;
+    showAnswerSearchLink(word);
+  };
+  image.src = info.url;
+
+  dom.answerCredit.href = info.creditUrl || "#";
+  dom.answerCredit.textContent = info.creditLabel || "Photo: Wikipedia";
+  dom.answerCredit.hidden = false;
+}
+
+function showAnswerCard(word) {
+  state.revealedWord = word;
+  dom.answerWord.textContent = word.toUpperCase();
+  dom.answerCard.hidden = false;
+
+  const images = window.SpellingImages;
+  const emoji = images ? images.emojiFor(word) : null;
+  dom.answerEmoji.textContent = emoji || "";
+  dom.answerEmoji.hidden = !emoji;
+  dom.answerMedia.hidden = !emoji;
+  dom.answerImage.hidden = true;
+  dom.answerImage.removeAttribute("src");
+  dom.answerImage.alt = "";
+  dom.answerCredit.hidden = true;
+  dom.answerCredit.removeAttribute("href");
+  dom.answerCredit.textContent = "";
+
+  if (!images) {
+    showAnswerSearchLink(word);
+    return;
+  }
+
+  const info = images.get(word);
+  if (info === undefined) {
+    images.whenReady(word, (readyInfo) => {
+      if (state.revealedWord !== word) return;
+      if (readyInfo?.url) {
+        applyAnswerPhoto(word, readyInfo);
+      } else {
+        showAnswerSearchLink(word);
+      }
+    });
+  } else if (info?.url) {
+    applyAnswerPhoto(word, info);
+  } else {
+    showAnswerSearchLink(word);
+  }
+}
+
+function preloadWordImage(word) {
+  const images = window.SpellingImages;
+  if (!images) return;
+
+  images.preload(word);
+  images.ensure(word).then((info) => {
+    if (!info?.url || state.currentWord !== word) return;
+    const image = new Image();
+    image.decoding = "async";
+    image.src = info.url;
+  });
+}
+
 function clearAnswer() {
   state.chosenLetters = [];
   dom.feedback.textContent = "";
   dom.feedback.className = "feedback";
   hideAnswerOk();
+  hideAnswerCard();
   renderSlots();
 }
 
@@ -385,6 +493,7 @@ function startNewProblem() {
   state.lastWord = state.currentWord;
   dom.promptText.textContent = MESSAGES.promptOnScreen;
 
+  preloadWordImage(state.currentWord);
   speakCurrentPrompt();
 }
 
@@ -409,12 +518,14 @@ function checkAnswer() {
   if (isCorrect) {
     dom.feedback.textContent = MESSAGES.correct;
     dom.feedback.className = "feedback correct";
+    showAnswerCard(state.currentWord);
     speak(MESSAGES.correct, () => {
       window.setTimeout(startNewProblem, CONFIG.nextProblemDelayMs);
     });
   } else {
     dom.feedback.textContent = MESSAGES.wrong;
     dom.feedback.className = "feedback wrong";
+    showAnswerCard(state.currentWord);
     speak(MESSAGES.wrong, () => {
       dom.feedback.textContent = `${MESSAGES.wrong}\n${MESSAGES.answerReveal(state.currentWord)}`;
       showAnswerOk();
